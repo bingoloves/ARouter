@@ -68,7 +68,6 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        LogUtils.e("onBackPressed");
         handleExitAnim();
     }
 
@@ -76,7 +75,6 @@ public class BaseActivity extends AppCompatActivity {
     public void finish() {
         super.finish();
         handleExitAnim();
-        LogUtils.e("finish");
     }
 
     @Override
@@ -99,7 +97,6 @@ public class BaseActivity extends AppCompatActivity {
      */
     private void handleExitAnim(){
         if (openNavAnimate() && !isAnimExited){
-            LogUtils.e("123");
             Stack<Activity> activityStack = ActivityStackManager.getActivityStack();
             if (activityStack == null || activityStack.size()<=1){
 
