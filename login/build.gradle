@@ -3,7 +3,7 @@ if (isLoginRunAlone.toBoolean()) {
 } else {
     apply plugin: 'com.android.library'
 }
-def deps = rootProject.ext.dependencies
+apply plugin: 'com.jakewharton.butterknife'
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
@@ -45,7 +45,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    def deps = rootProject.ext.dependencies
     implementation deps.appcompat
     annotationProcessor deps.arouterCompiler
+    annotationProcessor deps.butterknifeCompiler
     implementation project(':base')
 }

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <TextView
-        android:id="@+id/tv_login_state"
+        android:id="@+id/tv_im_login_state"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="登录状态"/>
@@ -14,5 +14,8 @@
         android:textAllCaps="false"
         android:onClick="moveLogin"
         android:text="跳转到Login" />
-
+    <cn.cqs.im.widget.keyboard.ChatEmotionLayout
+        android:id="@+id/chatView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>

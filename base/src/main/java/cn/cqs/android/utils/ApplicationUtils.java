@@ -118,12 +118,10 @@ public class ApplicationUtils {
      */
     public void initModuleApp(Application application){
         String currentApplicationName = application.getClass().getCanonicalName();
-//        Log.e("TAG","currentApplicationName:"+currentApplicationName);
         for (String moduleApp : Config.moduleApps) {
             //双重判断避免重复调用
             if (!TextUtils.isEmpty(currentApplicationName) && !moduleAfterList.contains(moduleApp)){
                 moduleAfterList.add(moduleApp);
-//                Log.e("TAG","moduleApp:"+moduleApp);
                 try {
                     Class clazz = Class.forName(moduleApp);
                     AbsApplication app = (AbsApplication) clazz.newInstance();
@@ -137,14 +135,4 @@ public class ApplicationUtils {
         }
     }
 
-    /**
-     * 初始化module库中的初始化操作
-     * @param modules  不需要初始化的类
-     */
-//    public void initModuleAppWithout(String[] modules){
-//        Config.moduleApps
-//        if (modules != null && modules.length>0){
-//
-//        }
-//    }
 }

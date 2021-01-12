@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-def deps = rootProject.ext.dependencies
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
@@ -28,9 +28,11 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    def deps = rootProject.ext.dependencies
     implementation deps.appcompat
     implementation deps.constraint
     annotationProcessor deps.arouterCompiler
+    annotationProcessor deps.butterknifeCompiler
     implementation project(':base')
     implementation project(':login')
     implementation project(':im')

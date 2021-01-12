@@ -1,7 +1,11 @@
 package cn.cqs.android.route;
 
+import android.app.Activity;
+
 import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.callback.NavCallback;
+
+import cn.cqs.android.R;
 import cn.cqs.android.utils.log.LogUtils;
 
 /**
@@ -10,6 +14,12 @@ import cn.cqs.android.utils.log.LogUtils;
  */
 
 public class DefaultNavCallback extends NavCallback{
+
+    @Override
+    public void onFound(Postcard postcard) {
+        super.onFound(postcard);
+    }
+
     /**
      * 页面抵达
      * @param postcard

@@ -24,7 +24,7 @@ ext {
     dependencies = [
             //路由框架
             arouterApi               : "com.alibaba:arouter-api:${version.arouterApi}",
-            arouterCompiler         : "com.alibaba:arouter-compiler:${version.arouterCompiler}",
+            arouterCompiler          : "com.alibaba:arouter-compiler:${version.arouterCompiler}",
             //原生组件支持
             appcompat                : "com.android.support:appcompat-v7:${version.supportSdkVersion}",
             recyclerview             : "com.android.support:recyclerview-v7:${version.supportSdkVersion}",

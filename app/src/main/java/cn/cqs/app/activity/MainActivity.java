@@ -1,17 +1,15 @@
 package cn.cqs.app.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.alibaba.android.arouter.facade.callback.NavCallback;
-import com.alibaba.android.arouter.facade.callback.NavigationCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
 
 import cn.cqs.android.base.BaseActivity;
+import cn.cqs.android.enums.TransitionEnum;
 import cn.cqs.android.route.DefaultNavCallback;
+import cn.cqs.android.utils.PendingTransitionUtils;
 import cn.cqs.android.utils.log.LogUtils;
 import cn.cqs.app.R;
 
@@ -24,7 +22,9 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
     }
     public void toLogin(View view){
-        ARouter.getInstance().build("/login/login").navigation();
+        ARouter.getInstance().build("/login/login")
+                .navigation(this);
+//        finish();
     }
     public void toIm(View view){
         ARouter.getInstance().build("/im/main")

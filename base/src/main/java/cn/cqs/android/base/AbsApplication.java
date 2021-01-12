@@ -1,9 +1,13 @@
 package cn.cqs.android.base;
 
+import android.app.Activity;
 import android.app.Application;
+import android.os.Bundle;
+
 import com.alibaba.android.arouter.launcher.ARouter;
 
 import cn.cqs.android.R;
+import cn.cqs.android.utils.ActivityStackManager;
 import cn.cqs.android.utils.ApplicationUtils;
 import cn.cqs.android.utils.crash.CaocConfig;
 import cn.cqs.android.utils.log.LogUtils;
@@ -26,8 +30,48 @@ public abstract class AbsApplication extends Application{
         initCatchException();
         iniLogUtils();
         initModuleApp(this);
+        registerActivityLifecycleCallbacks(activityLifecycleCallbacks);
     }
 
+    /**
+     * Activity栈管理
+     */
+    private ActivityLifecycleCallbacks activityLifecycleCallbacks = new ActivityLifecycleCallbacks() {
+        @Override
+        public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+            ActivityStackManager.getStackManager().addActivity(activity);
+        }
+
+        @Override
+        public void onActivityStarted(Activity activity) {
+
+        }
+
+        @Override
+        public void onActivityResumed(Activity activity) {
+
+        }
+
+        @Override
+        public void onActivityPaused(Activity activity) {
+
+        }
+
+        @Override
+        public void onActivityStopped(Activity activity) {
+
+        }
+
+        @Override
+        public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+
+        }
+
+        @Override
+        public void onActivityDestroyed(Activity activity) {
+            ActivityStackManager.getStackManager().removeActivity(activity);
+        }
+    };
     /**
      * 初始化日志开关
      */
@@ -77,4 +121,6 @@ public abstract class AbsApplication extends Application{
      * Module Application 初始化
      */
     public abstract void initModuleApp(Application application);
+
+
 }

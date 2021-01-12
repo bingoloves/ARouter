@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_gravity="bottom">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/bg_horizontal_line_color" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#eee"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="6dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="6dp">
+        <!--切换文字和表情按钮-->
+        <ImageView
+            android:id="@+id/ic_keyboard"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:clickable="true"
+            android:src="@drawable/ic_keyboard"
+            android:visibility="visible" />
+        <!--添加图片按钮-->
+        <ImageView
+            android:id="@+id/btn_add_image"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:clickable="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_plus"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/im_shape_keyboard_input"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <cn.cqs.im.widget.emotion.EmotionEditText
+                android:id="@+id/et_emotion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:maxLines="3"
+                android:minHeight="36dp"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_send"
+            android:layout_width="56dp"
+            android:layout_height="32dp"
+            android:background="@drawable/im_shape_keyboard_send"
+            android:text="@string/im_keyboard_send"
+            android:textColor="@android:color/white"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/bg_horizontal_line_color"/>
+</LinearLayout>

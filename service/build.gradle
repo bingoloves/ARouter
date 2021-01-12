@@ -1,6 +1,5 @@
 apply plugin: 'com.android.library'
 
-def deps = rootProject.ext.dependencies
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
@@ -19,5 +18,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    def deps = rootProject.ext.dependencies
     implementation deps.appcompat
 }

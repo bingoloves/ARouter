@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Im</string>
+
+    <string name="im_keyboard_send">发送</string>
 </resources>

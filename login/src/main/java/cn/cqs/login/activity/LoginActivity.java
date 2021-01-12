@@ -6,9 +6,14 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import butterknife.BindView;
 import cn.cqs.android.base.BaseActivity;
+import cn.cqs.android.enums.TransitionEnum;
+import cn.cqs.android.utils.PendingTransitionUtils;
+import cn.cqs.android.utils.log.LogUtils;
 import cn.cqs.login.LoginApp;
 import cn.cqs.login.R;
+import cn.cqs.login.R2;
 import cn.cqs.login.bean.UserInfo;
 
 /**
@@ -17,13 +22,14 @@ import cn.cqs.login.bean.UserInfo;
 @Route(path = "/login/login")
 public class LoginActivity extends BaseActivity{
 
+    @BindView(R2.id.tv_login_state)
     TextView loginStateTv;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        loginStateTv = findViewById(R.id.tv_login_state);
+//        loginStateTv = findViewById(R.id.tv_login_state1);
         updateLoginState();
     }
     public void login(View view){
@@ -36,6 +42,10 @@ public class LoginActivity extends BaseActivity{
         LoginApp.userInfo = null;
         updateLoginState();
         Toast.makeText(this, "已退出", Toast.LENGTH_SHORT).show();
+    }
+    public void back(View view){
+        finish();
+        Toast.makeText(this, "Finish", Toast.LENGTH_SHORT).show();
     }
 
     private void updateLoginState() {

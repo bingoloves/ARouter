@@ -3,7 +3,7 @@ if (isImRunAlone.toBoolean()) {
 } else {
     apply plugin: 'com.android.library'
 }
-def deps = rootProject.ext.dependencies
+apply plugin: 'com.jakewharton.butterknife'
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
@@ -19,7 +19,7 @@ android {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
-
+        //ndk { abiFilters "x86", "armeabi-v7a"}
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
@@ -38,7 +38,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    //use legacy for android 6.0（3.6.8版本之后移除apache library）
+    //useLibrary 'org.apache.http.legacy'
 
+    //自3.6.0开始需要java8的支持
+//    compileOptions {
+//        sourceCompatibility JavaVersion.VERSION_1_8
+//        targetCompatibility JavaVersion.VERSION_1_8
+//    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+            jni.srcDirs = []
+        }
+    }
 }
 
 dependencies {
@@ -47,7 +60,12 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    def deps = rootProject.ext.dependencies
     implementation deps.appcompat
+    implementation deps.recyclerview
     annotationProcessor deps.arouterCompiler
+    annotationProcessor deps.butterknifeCompiler
     implementation project(':base')
+//    api 'cn.rongcloud.sdk:im_lib:4.1.0.1' // 即时通讯基础能力库
+//    api 'cn.rongcloud.sdk:im_kit:4.1.0.1' // 即时通讯 UI 基础组件
 }
