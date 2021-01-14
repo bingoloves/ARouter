@@ -8,11 +8,13 @@ import com.google.gson.Gson;
 
 import java.lang.reflect.Type;
 
+import cn.cqs.service.constants.IRoutePath;
+
 /**
  * Created by Administrator on 2021/1/9.
  * 数据解析类
  */
-@Route(path = "/service/json")
+@Route(path = IRoutePath.SERVICE_JSON)
 public class JsonServiceImpl implements SerializationService {
     @Override
     public void init(Context context) {

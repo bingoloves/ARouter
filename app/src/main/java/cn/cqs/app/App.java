@@ -4,6 +4,7 @@ import android.app.Application;
 
 import cn.cqs.android.base.AbsApplication;
 import cn.cqs.android.utils.ApplicationUtils;
+import cn.cqs.service.ServiceFactory;
 
 /**
  * Created by Administrator on 2021/1/9 0009.

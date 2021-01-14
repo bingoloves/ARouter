@@ -38,20 +38,24 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    //use legacy for android 6.0（3.6.8版本之后移除apache library）
-    //useLibrary 'org.apache.http.legacy'
-
-    //自3.6.0开始需要java8的支持
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+    useLibrary 'org.apache.http.legacy'
+    lintOptions {
+        abortOnError false
+        //忽略警告
+        ignoreWarnings true
+    }
 //    compileOptions {
 //        sourceCompatibility JavaVersion.VERSION_1_8
 //        targetCompatibility JavaVersion.VERSION_1_8
 //    }
-    sourceSets {
-        main {
-            jniLibs.srcDirs = ['libs']
-            jni.srcDirs = []
-        }
-    }
 }
 
 dependencies {
@@ -63,9 +67,24 @@ dependencies {
     def deps = rootProject.ext.dependencies
     implementation deps.appcompat
     implementation deps.recyclerview
+    implementation deps.gson
+    implementation deps.eventbus
+    implementation deps.flycoTabLayout
+    implementation deps.glide
+    implementation deps.rxjava
+    implementation deps.rxandroid
+    implementation deps.okhttp3
+    annotationProcessor deps.glideCompiler
     annotationProcessor deps.arouterCompiler
     annotationProcessor deps.butterknifeCompiler
     implementation project(':base')
+    implementation project(':adapter')
 //    api 'cn.rongcloud.sdk:im_lib:4.1.0.1' // 即时通讯基础能力库
 //    api 'cn.rongcloud.sdk:im_kit:4.1.0.1' // 即时通讯 UI 基础组件
+
+    //Bmob IM & 后端云
+    implementation 'cn.bmob.android:bmob-sdk:3.7.8'
+    implementation 'cn.bmob.android:bmob-im:2.1.5@aar'
+    //汉字转拼音
+    implementation 'com.github.promeg:tinypinyin:1.0.0'
 }

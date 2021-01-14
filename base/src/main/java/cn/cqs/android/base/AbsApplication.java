@@ -17,7 +17,6 @@ import cn.cqs.android.utils.log.LogUtils;
  */
 
 public abstract class AbsApplication extends Application{
-
     @Override
     public void onCreate() {
         super.onCreate();

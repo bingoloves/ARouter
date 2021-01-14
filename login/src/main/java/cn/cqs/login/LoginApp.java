@@ -1,11 +1,11 @@
 package cn.cqs.login;
 
 import android.app.Application;
+import android.content.Context;
 
 import cn.cqs.android.base.AbsApplication;
 import cn.cqs.android.utils.log.LogUtils;
-import cn.cqs.login.bean.UserInfo;
-import cn.cqs.login.services.AccountService;
+import cn.cqs.login.services.LoginService;
 import cn.cqs.service.ServiceFactory;
 
 /**
@@ -13,11 +13,10 @@ import cn.cqs.service.ServiceFactory;
  */
 
 public class LoginApp extends AbsApplication {
-    /**
-     * 用户登录成功的内存缓存
-     */
-    public static UserInfo userInfo;
-
+    private static Application loginApp;
+    public static Application getApp(){
+        return loginApp;
+    }
     @Override
     public void onCreate() {
         super.onCreate();
@@ -26,7 +25,8 @@ public class LoginApp extends AbsApplication {
     @Override
     public void initModuleApp(Application application) {
         LogUtils.d("LoginApp");
+        loginApp = application;
         //将内部需要交互的模块开放出去
-        ServiceFactory.getInstance().setLoginService(new AccountService());
+        ServiceFactory.getInstance().setLoginService(new LoginService());
     }
 }

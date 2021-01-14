@@ -15,12 +15,11 @@ public interface ILoginService {
     boolean isLogin();
 
     /**
-     * 获取登录用户的 AccountId
+     * 获取登录用户的userId唯一标识
      *
      * @return
      */
-    String getAccountId();
-
+    String getUser();
 
     /**
      * 创建 UserFragment

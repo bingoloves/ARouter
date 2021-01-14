@@ -30,10 +30,15 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     def deps = rootProject.ext.dependencies
     implementation deps.appcompat
+    implementation deps.design
     implementation deps.constraint
     annotationProcessor deps.arouterCompiler
     annotationProcessor deps.butterknifeCompiler
     implementation project(':base')
-    implementation project(':login')
-    implementation project(':im')
+    if(!isLoginRunAlone.toBoolean()){
+        implementation project(':login')
+    }
+    if(!isImRunAlone.toBoolean()){
+        implementation project(':im')
+    }
 }

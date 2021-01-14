@@ -7,4 +7,10 @@
     <color name="bg_horizontal_line_color">#80a3a4a7</color>
     <color name="bg_horizontal_btn_normal">#eeeeee</color>
     <color name="bg_horizontal_btn_selected">#70a3a4a7</color>
+
+    <color name="color_chat_send_status">#818181</color>
+    <color name="color_msg_system_time_bg">#20000000</color>
+    <color name="color_bottom_text_normal">#9da0a4</color>
+    <color name="color_bottom_text_press">#4f9ef6</color>
+    <color name="color_btn">#489cfa</color>
 </resources>

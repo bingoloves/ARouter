@@ -35,6 +35,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.gyf.immersionbar.ImmersionBar;
+
 import cn.cqs.android.R;
 import cn.cqs.android.utils.log.LogUtils;
 
@@ -53,9 +56,8 @@ public final class DefaultErrorActivity extends AppCompatActivity {
             setTheme(R.style.Theme_AppCompat_Light_DarkActionBar);
         }
         a.recycle();
-
         setContentView(R.layout.activity_default_crash);
-
+        ImmersionBar.with(this).statusBarDarkFont(true).init();
         //Close/restart button logic:
         //If a class if set, use restart.
         //Else, use close and just finish the app.

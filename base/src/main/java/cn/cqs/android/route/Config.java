@@ -11,10 +11,10 @@ public class Config {
     /**
      * 及时通讯模块
      */
-    private static final String IM = "cn.cqs.im.ImApp";
+    private static final String WECHAT = "cn.cqs.im.ChatApp";
 
     public static String[] moduleApps = {
             LOGIN,
-            IM
+            WECHAT
     };
 }

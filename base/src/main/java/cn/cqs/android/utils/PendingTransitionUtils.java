@@ -30,8 +30,23 @@ public class PendingTransitionUtils {
             case SLIDE_BOTTOM:
                 activity.overridePendingTransition(R.anim.slide_in_from_bottom,R.anim.slide_out_from_top);
                 break;
+            case TOP:
+                activity.overridePendingTransition(R.anim.slide_in_from_top,0);
+                break;
+            case RIGHT:
+                activity.overridePendingTransition(R.anim.slide_in_from_right,0);
+                break;
+            case BOTTOM:
+                activity.overridePendingTransition(R.anim.slide_in_from_bottom,0);
+                break;
+            case LEFT:
+                activity.overridePendingTransition(R.anim.slide_in_from_left,0);
+                break;
             case FADE:
                 activity.overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                break;
+            case ZOOM:
+                activity.overridePendingTransition(R.anim.zoom_in,R.anim.zoom_out);
                 break;
         }
     }
@@ -49,8 +64,23 @@ public class PendingTransitionUtils {
             case SLIDE_BOTTOM:
                 activity.overridePendingTransition(R.anim.slide_in_from_top,R.anim.slide_out_from_bottom);
                 break;
+            case TOP:
+                activity.overridePendingTransition(0,R.anim.slide_out_from_top);
+                break;
+            case RIGHT:
+                activity.overridePendingTransition(0,R.anim.slide_out_from_right);
+                break;
+            case BOTTOM:
+                activity.overridePendingTransition(0,R.anim.slide_out_from_bottom);
+                break;
+            case LEFT:
+                activity.overridePendingTransition(0,R.anim.slide_out_from_left);
+                break;
             case FADE:
                 activity.overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                break;
+            case ZOOM:
+                activity.overridePendingTransition(R.anim.zoom_in,R.anim.zoom_out);
                 break;
         }
     }

@@ -11,6 +11,7 @@ import java.util.List;
 
 import cn.cqs.android.base.AbsApplication;
 import cn.cqs.android.route.Config;
+import cn.cqs.android.utils.log.LogUtils;
 
 /**
  * Created by Administrator on 2021/1/9 0009.
@@ -19,7 +20,7 @@ import cn.cqs.android.route.Config;
 public class ApplicationUtils {
 
     private ApplicationUtils applicationUtils;
-    private Application application;
+    private Application mGlobalApplication;
     /**
      * 禁止外部创建 ServiceFactory 对象
      */
@@ -42,7 +43,7 @@ public class ApplicationUtils {
      * @param application
      */
     public void init(Application application){
-        this.application = application;
+        this.mGlobalApplication = application;
     }
 
     /**
@@ -50,13 +51,13 @@ public class ApplicationUtils {
      * @return
      */
     public Application getApplication(){
-        if (application == null){
+        if (mGlobalApplication == null){
             Application curApplication = getCurApplication();
             if (curApplication != null){
-                application = curApplication;
+                mGlobalApplication = curApplication;
             }
         }
-        return application;
+        return mGlobalApplication;
     }
     /**
      * 获取应用名称
@@ -117,8 +118,10 @@ public class ApplicationUtils {
      * TODO 使用异步分段初始化
      */
     public void initModuleApp(Application application){
+        mGlobalApplication = application;
         String currentApplicationName = application.getClass().getCanonicalName();
         for (String moduleApp : Config.moduleApps) {
+            LogUtils.e("module:"+moduleApp);
             //双重判断避免重复调用
             if (!TextUtils.isEmpty(currentApplicationName) && !moduleAfterList.contains(moduleApp)){
                 moduleAfterList.add(moduleApp);

@@ -30,6 +30,7 @@ dependencies {
     implementation deps.appcompat
     api project (':service')
     api deps.gson
+    api deps.immersionbar
     api deps.arouterApi
     annotationProcessor deps.arouterCompiler
     api deps.butterknife

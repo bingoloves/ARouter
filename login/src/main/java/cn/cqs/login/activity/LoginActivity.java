@@ -2,53 +2,125 @@ package cn.cqs.login.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.ImageView;
+
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.gyf.immersionbar.ImmersionBar;
+
 import butterknife.BindView;
+import butterknife.OnClick;
 import cn.cqs.android.base.BaseActivity;
-import cn.cqs.android.enums.TransitionEnum;
-import cn.cqs.android.utils.PendingTransitionUtils;
-import cn.cqs.android.utils.log.LogUtils;
-import cn.cqs.login.LoginApp;
+import cn.cqs.android.utils.ACache;
 import cn.cqs.login.R;
 import cn.cqs.login.R2;
-import cn.cqs.login.bean.UserInfo;
+import cn.cqs.service.ServiceFactory;
+import cn.cqs.service.constants.Cache;
+import cn.cqs.service.constants.IRoutePath;
+import cn.cqs.service.im.LoginCallback;
 
 /**
  * Created by Administrator on 2021/1/9 0009.
  */
-@Route(path = "/login/login")
+@Route(path = IRoutePath.LOGIN)
 public class LoginActivity extends BaseActivity{
+    @BindView(R2.id.et_name)
+    EditText nameEt;
+    @BindView(R2.id.et_password)
+    EditText passwordEt;
+    @BindView(R2.id.iv_eyes)
+    ImageView eyesIv;
 
-    @BindView(R2.id.tv_login_state)
-    TextView loginStateTv;
+    @OnClick({R2.id.btn_login,R2.id.btn_register,R2.id.iv_eyes})
+    public void clickEvent(View view){
+        int i = view.getId();
+        if (i == R.id.btn_login) {
+            login(view);
+        } else if (i == R.id.btn_register) {
+            register(view);
+        } else if (i == R.id.iv_eyes) {
+            setPasswordVisible(passwordEt);
+            showPwd = !showPwd;
+            eyesIv.setImageResource(showPwd ? R.mipmap.login_icon_show : R.mipmap.login_icon_hide);
+        }
+    }
+    /**
+     * 是否显示密码
+     */
+    private boolean showPwd = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-//        loginStateTv = findViewById(R.id.tv_login_state1);
-        updateLoginState();
     }
-    public void login(View view){
-        LoginApp.userInfo = new UserInfo("10086", "Admin");
-        updateLoginState();
-        Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
+    @Override
+    protected void initImmersionbar() {
+        ImmersionBar.with(this).titleBar(R.id.title_bar).statusBarDarkFont(true).init();
     }
 
-    public void exit(View view){
-        LoginApp.userInfo = null;
-        updateLoginState();
-        Toast.makeText(this, "已退出", Toast.LENGTH_SHORT).show();
-    }
-    public void back(View view){
-        finish();
-        Toast.makeText(this, "Finish", Toast.LENGTH_SHORT).show();
+    private void register(View view) {
+        String userName = nameEt.getText().toString().trim();
+        String password = passwordEt.getText().toString().trim();
+        if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(password)){
+            toast("请输入完整信息");
+            return;
+        }
+        ServiceFactory.getInstance().getBmobService().register(userName, password, new LoginCallback() {
+            @Override
+            public void onSuccess(String userInfo) {
+                toast("注册成功");
+            }
+
+            @Override
+            public void onError(String error) {
+                toast("注册失败："+ error);
+            }
+        });
     }
 
-    private void updateLoginState() {
-        loginStateTv.setText("这里是登录界面：" + (LoginApp.userInfo == null ? "未登录" : LoginApp.userInfo.getUserName()));
+    private void login(View view) {
+        String userName = nameEt.getText().toString().trim();
+        String password = passwordEt.getText().toString().trim();
+        if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(password)){
+            toast("请输入完整信息");
+            return;
+        }
+        ServiceFactory.getInstance().getBmobService().login(userName, password, new LoginCallback() {
+            @Override
+            public void onSuccess(String userInfo) {
+                toast("登录成功");
+                ACache.get(LoginActivity.this).put(Cache.IS_LOGIN,true);
+                ARouter.getInstance().build(IRoutePath.WECHAT)
+                        .withString("name", "xuebing")
+                        .navigation(LoginActivity.this);
+                finish();
+            }
+
+            @Override
+            public void onError(String error) {
+                toast("登录失败："+ error);
+            }
+        });
+    }
+
+    /**
+     * 切换密码的明文显示
+     */
+    private void setPasswordVisible(EditText editText) {
+        if (EditorInfo.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD == editText.getInputType()) {
+            editText.setInputType(EditorInfo.TYPE_TEXT_VARIATION_PASSWORD);
+            editText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        } else {
+            editText.setInputType(EditorInfo.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            editText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        }
+        editText.setSelection(editText.getText().toString().length());
     }
 }

@@ -37,7 +37,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
+    //避免资源文件的冲突 模块中加入以模块命名的前缀
+    //resourcePrefix "login_"
 }
 
 dependencies {

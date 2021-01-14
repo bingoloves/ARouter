@@ -1,20 +1,17 @@
 package cn.cqs.service;
 
+import cn.cqs.service.im.IBmobService;
 import cn.cqs.service.login.ILoginService;
 
 public class ServiceFactory {
 
     private ILoginService accountService;
+    private IBmobService bmobService;
 
     /**
-     * 禁止外部创建 ServiceFactory 对象
+     * 单例模式,创建公共服务工厂
      */
-    private ServiceFactory() {
-    }
-
-    /**
-     * 通过静态内部类方式实现 ServiceFactory 的单例
-     */
+    private ServiceFactory() {}
     public static ServiceFactory getInstance() {
         return Inner.serviceFactory;
     }
@@ -23,17 +20,19 @@ public class ServiceFactory {
         private static ServiceFactory serviceFactory = new ServiceFactory();
     }
 
-    /**
-     * 接收 Login 组件实现的 Service 实例
-     */
     public void setLoginService(ILoginService accountService) {
         this.accountService = accountService;
     }
-
-    /**
-     * 返回 Login 组件的 Service 实例
-     */
     public ILoginService getLoginService() {
         return accountService;
+    }
+
+
+    public IBmobService getBmobService(){
+        return bmobService;
+    }
+
+    public void setBmobService(IBmobService bmobService) {
+        this.bmobService = bmobService;
     }
 }

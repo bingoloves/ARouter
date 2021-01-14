@@ -23,8 +23,6 @@ import cn.cqs.android.utils.log.LogUtils;
 import cn.cqs.im.widget.keyboard.BaseSoftInputLayout;
 import cn.cqs.im.widget.keyboard.ChatEmotionLayout;
 import cn.cqs.service.ServiceFactory;
-
-@Route(path = "/im/main",name = "即时通讯的主页")
 public class ImActivity extends BaseActivity {
 
     @Autowired
