@@ -1,4 +1,4 @@
-package cn.cqs.im.widget;
+package cn.cqs.im.widget.emotion;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;

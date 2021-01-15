@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="bg_horizontal_line_color">#80a3a4a7</color>
+    <color name="bg_horizontal_line_color">#EEEEEE</color>
     <color name="bg_horizontal_btn_normal">#eeeeee</color>
     <color name="bg_horizontal_btn_selected">#70a3a4a7</color>
 

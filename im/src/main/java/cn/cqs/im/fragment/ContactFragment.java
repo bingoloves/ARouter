@@ -137,9 +137,9 @@ public class ContactFragment extends BaseFragment{
                     BmobIMUserInfo info = new BmobIMUserInfo(user.getObjectId(), user.getUsername(), user.getAvatar());
                     //TODO 会话：4.1、创建一个常态会话入口，好友聊天
                     BmobIMConversation conversationEntrance = BmobIM.getInstance().startPrivateConversation(info, null);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("c", conversationEntrance);
-                    startActivity(new Intent(getContext(),ChatActivity.class), bundle);
+                    Intent intent = new Intent(getContext(), ChatActivity.class);
+                    intent.putExtra("c", conversationEntrance);
+                    startActivity(intent);
                 }
             }
 

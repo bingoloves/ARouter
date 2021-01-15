@@ -77,6 +77,7 @@ public class WeChatActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wechat);
+        EventBus.getDefault().register(this);
         initView();
         initLoginState();
         final User user = BmobUser.getCurrentUser(User.class);
@@ -214,6 +215,7 @@ public class WeChatActivity extends BaseActivity {
         super.onDestroy();
         //清理导致内存泄露的资源
         BmobIM.getInstance().clear();
+        EventBus.getDefault().unregister(this);
     }
 
     /**

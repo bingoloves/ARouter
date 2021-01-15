@@ -68,7 +68,7 @@ public class SuportToolbarActivity extends BaseActivity {
                 rootView.addView(linearLayout);
             }
         }
-        ImmersionBar.with(this).titleBar(mTitleBar).init();
+        ImmersionBar.with(this).titleBar(mTitleBar).statusBarDarkFont(true).init();
     }
     private void initTitleBar(TitleBar titleBar){
         titleBar.setLeftTitle("返回");

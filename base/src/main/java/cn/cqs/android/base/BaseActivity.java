@@ -59,7 +59,8 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
-    /**隐藏软键盘-一般是EditText.getWindowToken()
+    /**
+     * 隐藏软键盘-一般是EditText.getWindowToken()
      * @param token
      */
     public void hideSoftInput(IBinder token) {

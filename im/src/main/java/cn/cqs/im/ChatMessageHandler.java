@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
@@ -102,6 +103,8 @@ public class ChatMessageHandler extends BmobIMMessageHandler {
      * @param event
      */
     private void processSDKMessage(BmobIMMessage msg, MessageEvent event) {
+        //boolean showNotification = BmobNotificationManager.getInstance(context).isShowNotification();
+        //LogUtils.e("showNotification = " + showNotification);
         if (BmobNotificationManager.getInstance(context).isShowNotification()) {
             //如果需要显示通知栏，SDK提供以下两种显示方式：
             Intent pendingIntent = new Intent(context, WeChatActivity.class);

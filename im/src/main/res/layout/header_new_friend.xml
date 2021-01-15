@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="75dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@android:color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,15 +43,15 @@
             android:layout_gravity="center_vertical"
             android:gravity="left|center"
             android:singleLine="true"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textColor="#3e3e39"
             android:text="新朋友"/>
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="0.5dp"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="75dp"
-        android:background="#dadada"/>
+        android:background="@color/bg_horizontal_line_color"/>
 </RelativeLayout>

@@ -3,7 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!--Activity之间跳转出现短暂黑屏的解决方法。类似overridePendingTransition(R.anim.xxx, 0);-->
-        <item name="android:windowIsTranslucent">true</item>
+        <!--<item name="android:windowIsTranslucent">true</item>-->
     </style>
 
     <!-- toolbar菜单样式 -->

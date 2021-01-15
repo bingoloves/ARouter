@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import java.text.SimpleDateFormat;
+
 import butterknife.BindView;
 import cn.bmob.newim.bean.BmobIMConversation;
 import cn.bmob.newim.bean.BmobIMMessage;
@@ -19,6 +21,7 @@ import cn.cqs.im.R;
 import cn.cqs.im.R2;
 import cn.cqs.im.adapter.OnRecyclerViewListener;
 import cn.cqs.im.model.UserModel;
+import cn.cqs.im.widget.keyboard.utils.SpanStringUtils;
 
 /**
  * 发送的文本类型
@@ -61,7 +64,7 @@ public class SendTextHolder extends BaseViewHolder implements View.OnClickListen
     loadImage(avatar,iv_avatar);
     String time = dateFormat.format(message.getCreateTime());
     String content = message.getContent();
-    tv_message.setText(content);
+    tv_message.setText(SpanStringUtils.getEmotionContent(context, tv_message, content));
     tv_time.setText(time);
 
     int status =message.getSendStatus();

@@ -5,7 +5,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import java.text.SimpleDateFormat;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.bmob.newim.bean.BmobIMMessage;
@@ -13,6 +15,7 @@ import cn.bmob.newim.bean.BmobIMUserInfo;
 import cn.cqs.im.R;
 import cn.cqs.im.R2;
 import cn.cqs.im.adapter.OnRecyclerViewListener;
+import cn.cqs.im.widget.keyboard.utils.SpanStringUtils;
 
 /**
  * 接收到的文本类型
@@ -45,14 +48,14 @@ public class ReceiveTextHolder extends BaseViewHolder {
     tv_time.setText(time);
     final BmobIMUserInfo info = message.getBmobIMUserInfo();
     loadImage(info.getAvatar(),iv_avatar);
-    String content =  message.getContent();
-    tv_message.setText(content);
+    String content = message.getContent();
+    tv_message.setText(SpanStringUtils.getEmotionContent(context, tv_message, content));
     iv_avatar.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        if (info==null){
-          toast("由message获得的用户信息为空");
-          return;
+        if (info == null){
+            toast("由message获得的用户信息为空");
+            return;
         }
         toast("点击" + info.getName() + "的头像");
       }

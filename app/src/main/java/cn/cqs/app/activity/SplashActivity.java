@@ -25,6 +25,8 @@ public class SplashActivity extends BaseActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+//                Intent intent = new Intent(activity,MainActivity.class);
+//                startActivity(intent);
                 boolean isLogin = ServiceFactory.getInstance().getLoginService().isLogin();
                 if (isLogin) {
                     ARouter.getInstance().build(IRoutePath.WECHAT).navigation(activity);

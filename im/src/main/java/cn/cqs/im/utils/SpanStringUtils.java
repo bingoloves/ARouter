@@ -12,7 +12,7 @@ import android.text.TextUtils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import cn.cqs.im.widget.EmojiSpan;
+import cn.cqs.im.widget.emotion.EmojiSpan;
 
 public class SpanStringUtils {
 	/**

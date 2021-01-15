@@ -11,6 +11,8 @@ import java.io.File;
 import java.io.FileReader;
 
 import cn.bmob.newim.BmobIM;
+import cn.bmob.newim.core.BmobIMClient;
+import cn.bmob.newim.notification.BmobNotificationManager;
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobConfig;
 import cn.bmob.v3.exception.BmobException;

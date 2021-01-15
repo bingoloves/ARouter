@@ -1,13 +1,16 @@
 package cn.cqs.im.fragment;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -32,6 +35,7 @@ import cn.cqs.android.views.titlebar.TitleBar;
 import cn.cqs.im.R;
 import cn.cqs.im.R2;
 import cn.cqs.im.activity.ChatActivity;
+import cn.cqs.im.activity.NewFriendActivity;
 import cn.cqs.im.activity.SearchUserActivity;
 import cn.cqs.im.bean.Conversation;
 import cn.cqs.im.bean.NewFriendConversation;
@@ -40,6 +44,7 @@ import cn.cqs.im.db.NewFriend;
 import cn.cqs.im.db.NewFriendManager;
 import cn.cqs.im.event.RefreshEvent;
 import cn.cqs.im.utils.TimeUtil;
+import cn.cqs.im.widget.keyboard.utils.SpanStringUtils;
 
 /**会话界面
  * @author :smile
@@ -57,6 +62,8 @@ public class ConversationFragment extends BaseFragment {
     SwipeRefreshLayout refreshLayout;
     CommonAdapter<Conversation> adapter;
     List<Conversation> conversationList = new ArrayList<>();
+    //当前点击会话的索引
+    private int currentClickIndex;
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_conversation;
@@ -77,9 +84,11 @@ public class ConversationFragment extends BaseFragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new CommonAdapter<Conversation>(getActivity(),R.layout.item_conversation,conversationList) {
             @Override
-            protected void convert(ViewHolder holder, final Conversation conversation, int position) {
+            protected void convert(ViewHolder holder, final Conversation conversation, final int position) {
                 ImageView imageView = holder.getView(R.id.iv_recent_avatar);
-                holder.setText(R.id.tv_recent_msg,conversation.getLastMessageContent());
+                TextView messageTv = holder.getView(R.id.tv_recent_msg);
+                messageTv.setText(SpanStringUtils.getEmotionContent(getContext(), messageTv, conversation.getLastMessageContent()));
+//                holder.setText(R.id.tv_recent_msg,conversation.getLastMessageContent());
                 holder.setText(R.id.tv_recent_time, TimeUtil.getChatTime(false,conversation.getLastMessageTime()));
                 //会话图标
                 Object obj = conversation.getAvatar();
@@ -93,19 +102,30 @@ public class ConversationFragment extends BaseFragment {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        toast("哈哈哈");
+                        currentClickIndex = position;
                         if (conversation instanceof PrivateConversation){
                             PrivateConversation privateConversation = (PrivateConversation) conversation;
                             Intent intent = new Intent(getActivity(), ChatActivity.class);
                             intent.putExtra("c", privateConversation.conversation);
                             startActivity(intent);
+                        } else if (conversation instanceof NewFriendConversation){
+                            startActivity(new Intent(getContext(),NewFriendActivity.class));
                         }
                     }
                 });
                 holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View v) {
-                        conversation.onLongClick(getContext());
+                        new AlertDialog.Builder(getContext())
+                                .setTitle("确定删除此会话？")
+                                .setNegativeButton("取消",null)
+                                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        conversation.onLongClick(getContext());
+                                    }
+                                })
+                                .show();
                         return true;
                     }
                 });

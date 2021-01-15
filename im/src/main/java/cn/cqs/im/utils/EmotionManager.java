@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 import cn.cqs.android.utils.DensityUtils;
 import cn.cqs.android.utils.log.LogUtils;
 import cn.cqs.im.R;
-import cn.cqs.im.widget.EmojiSpan;
+import cn.cqs.im.widget.emotion.EmojiSpan;
 
 public class EmotionManager {
 
