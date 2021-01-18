@@ -28,8 +28,10 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     def deps = rootProject.ext.dependencies
     implementation deps.appcompat
+    api project (':components')
     api project (':service')
     api deps.gson
+    api deps.multidex
     api deps.immersionbar
     api deps.arouterApi
     annotationProcessor deps.arouterCompiler

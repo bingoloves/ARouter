@@ -1,13 +1,10 @@
 package cn.cqs.im.fragment;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 
 import com.github.promeg.pinyinhelper.Pinyin;
@@ -20,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import cn.bmob.newim.BmobIM;
 import cn.bmob.newim.bean.BmobIMConversation;
 import cn.bmob.newim.bean.BmobIMUserInfo;
@@ -29,8 +25,8 @@ import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.UpdateListener;
 import cn.cqs.android.base.BaseFragment;
 import cn.cqs.android.utils.log.LogUtils;
-import cn.cqs.android.views.titlebar.OnClickTitleBarImpl;
-import cn.cqs.android.views.titlebar.TitleBar;
+import cn.cqs.components.titlebar.OnClickTitleBarImpl;
+import cn.cqs.components.titlebar.TitleBar;
 import cn.cqs.im.R;
 import cn.cqs.im.R2;
 import cn.cqs.im.activity.ChatActivity;

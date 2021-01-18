@@ -1,0 +1,32 @@
+apply plugin: 'com.android.library'
+
+android {
+    //这里为了适配background库，需要 >= 29
+    compileSdkVersion 29
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    def deps = rootProject.ext.dependencies
+    implementation deps.appcompat
+    implementation deps.constraint
+    //图片选择框架
+    api deps.easyPhotos
+    implementation deps.glide
+    implementation deps.photoPreview
+    annotationProcessor deps.glideCompiler
+}

@@ -78,8 +78,14 @@ public class WeChatActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wechat);
         EventBus.getDefault().register(this);
+        //校验登录状态
+        boolean isLogin = ServiceFactory.getInstance().getLoginService().isLogin();
+        LogUtils.e(isLogin?"已登录":"未登录");
+        if (!isLogin){
+            Toast.makeText(this, "请先登录！", Toast.LENGTH_SHORT).show();
+            return;
+        }
         initView();
-        initLoginState();
         final User user = BmobUser.getCurrentUser(User.class);
         //TODO 连接：3.1、登录成功、注册成功或处于登录状态重新打开应用后执行连接IM服务器的操作
         //判断用户是否登录，并且连接状态不是已连接，则进行连接操作
@@ -114,13 +120,6 @@ public class WeChatActivity extends BaseActivity {
         checkStoragePermissions(0);
     }
 
-    private void initLoginState() {
-        boolean isLogin = ServiceFactory.getInstance().getLoginService().isLogin();
-        String loginTips = isLogin?"已登录":"未登录";
-        String loginText = "登录状态：" + loginTips;
-        Toast.makeText(this, loginTips, Toast.LENGTH_SHORT).show();
-        LogUtils.e(loginText);
-    }
     /**
      * TODO 1、兼容android6.0运行时权限
      * 检查权限

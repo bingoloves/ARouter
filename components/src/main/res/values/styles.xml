@@ -1,0 +1,44 @@
+<resources>
+    <!--组件公共样式-->
+    <!--参考属性-->
+    <style name="StyleBackground">
+        <!--圆角处理-->
+        <item name="bl_corners_radius">4dp</item>
+        <!--左下圆角-->
+        <item name="bl_corners_bottomLeftRadius">4dp</item>
+        <!--右下圆角-->
+        <item name="bl_corners_bottomRightRadius">4dp</item>
+        <!--左下圆角-->
+        <item name="bl_corners_topLeftRadius">4dp</item>
+        <!--左下圆角-->
+        <item name="bl_corners_topRightRadius">4dp</item>
+        <!--背景颜色-->
+        <item name="bl_solid_color">#E3B666</item>
+        <!--边框颜色-->
+        <item name="bl_stroke_color">#8c6822</item>
+        <!--边框位置-->
+        <item name="bl_stroke_position">bottom</item>
+        <!--边框宽度大小-->
+        <item name="bl_stroke_width">1dp</item>
+        <!--虚线边框中间分段大小-->
+        <item name="bl_stroke_dashGap">5dp</item>
+        <!--虚线边框的虚线段长度-->
+        <item name="bl_stroke_dashWidth">10dp</item>
+        <!--具体需求可以查看Components模块下的attrs-->
+    </style>
+    <!--默认圆角处理-->
+    <style name="StyleCorners">
+        <item name="bl_corners_radius">4dp</item>
+    </style>
+    <!--默认按钮-->
+    <style name="StyleButton" parent="StyleCorners">
+        <item name="bl_corners_radius">4dp</item>
+        <!--文字的颜色-->
+        <item name="bl_pressed_textColor">#CCffffff</item>
+        <item name="bl_unPressed_textColor">@android:color/white</item>
+        <!--按钮的颜色-->
+        <item name="bl_pressed_drawable">#CC0E78FF</item>
+        <item name="bl_unPressed_drawable">#0E78FF</item>
+    </style>
+
+</resources>

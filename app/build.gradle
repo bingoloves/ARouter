@@ -8,6 +8,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         javaCompileOptions {
             annotationProcessorOptions {
@@ -16,6 +17,11 @@ android {
         }
     }
     buildTypes {
+        debug {
+            resValue("string", "PORT_NUMBER", "8081")
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -29,9 +35,12 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     def deps = rootProject.ext.dependencies
+    debugImplementation deps.debugDatabase//数据库可视化
     implementation deps.appcompat
     implementation deps.design
+    implementation deps.glide
     implementation deps.constraint
+    annotationProcessor deps.glideCompiler
     annotationProcessor deps.arouterCompiler
     annotationProcessor deps.butterknifeCompiler
     implementation project(':base')

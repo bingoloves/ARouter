@@ -1,19 +1,26 @@
 package cn.cqs.app.activity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
-
-import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.gyf.immersionbar.ImmersionBar;
+import com.huantansheng.easyphotos.callback.SelectCallback;
+import com.huantansheng.easyphotos.models.album.entity.Photo;
+
+import java.util.ArrayList;
+
 import cn.cqs.android.base.BaseActivity;
-import cn.cqs.android.enums.TransitionEnum;
 import cn.cqs.android.route.DefaultNavCallback;
 import cn.cqs.android.utils.log.LogUtils;
 import cn.cqs.app.R;
+import cn.cqs.components.photo.PreviewUtils;
+import cn.cqs.components.photo.TakePhoto;
 
 @Route(path = "/main/main")
 public class MainActivity extends BaseActivity {
@@ -54,5 +61,13 @@ public class MainActivity extends BaseActivity {
     public void toTitleBar(View view){
         ARouter.getInstance().build("/main/titlebar").navigation(this);
     }
-
+    public void openPhoto(View view){
+        TakePhoto.openAlbum(activity, 9, new SelectCallback() {
+            @Override
+            public void onResult(ArrayList<Photo> photos, ArrayList<String> paths, boolean isOriginal) {
+                LogUtils.e(TextUtils.join("\n",paths));
+                PreviewUtils.start(activity,paths,0);
+            }
+        });
+    }
 }

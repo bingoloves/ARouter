@@ -1,6 +1,5 @@
 package cn.cqs.android.base;
 
-import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,10 +7,10 @@ import android.widget.LinearLayout;
 
 import com.gyf.immersionbar.ImmersionBar;
 
-import cn.cqs.android.views.titlebar.OnClickTitleBarImpl;
-import cn.cqs.android.views.titlebar.OnTitleBarListener;
-import cn.cqs.android.views.titlebar.TitleBar;
-import cn.cqs.android.views.titlebar.initializer.NightBarInitializer;
+import cn.cqs.components.titlebar.OnClickTitleBarImpl;
+import cn.cqs.components.titlebar.OnTitleBarListener;
+import cn.cqs.components.titlebar.TitleBar;
+import cn.cqs.components.titlebar.initializer.NightBarInitializer;
 
 /**
  * Created by bingo on 2021/1/13.

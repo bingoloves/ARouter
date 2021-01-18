@@ -1,1 +1,1 @@
-include ':app', ':base', ':login', ':im', ':service', ':adapter'
+include ':app', ':base', ':login', ':im', ':service', ':adapter', ':components'

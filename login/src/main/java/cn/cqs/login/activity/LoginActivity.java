@@ -18,6 +18,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import cn.cqs.android.base.BaseActivity;
 import cn.cqs.android.utils.ACache;
+import cn.cqs.android.utils.log.LogUtils;
 import cn.cqs.login.R;
 import cn.cqs.login.R2;
 import cn.cqs.service.ServiceFactory;
@@ -105,6 +106,7 @@ public class LoginActivity extends BaseActivity{
 
             @Override
             public void onError(String error) {
+                LogUtils.e("error = "+error);
                 toast("登录失败："+ error);
             }
         });

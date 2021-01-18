@@ -2,7 +2,9 @@ package cn.cqs.android.base;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.multidex.MultiDex;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 
@@ -31,7 +33,11 @@ public abstract class AbsApplication extends Application{
         initModuleApp(this);
         registerActivityLifecycleCallbacks(activityLifecycleCallbacks);
     }
-
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
     /**
      * Activity栈管理
      */

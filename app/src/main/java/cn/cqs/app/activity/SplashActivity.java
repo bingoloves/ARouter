@@ -4,8 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.Window;
+import android.view.WindowManager;
+
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+
 import cn.cqs.android.base.BaseActivity;
 import cn.cqs.app.R;
 import cn.cqs.service.ServiceFactory;

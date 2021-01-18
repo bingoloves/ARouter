@@ -38,7 +38,6 @@
 
     <application>
         <uses-library android:name="org.apache.http.legacy" android:required="false" />
-        <activity android:name=".ImActivity" android:windowSoftInputMode="adjustResize"/>
         <meta-data
             android:name="Bmob_APP_KEY"
             android:value="3ef3bbfa8d13e8269ae6ede1fede675b"/>

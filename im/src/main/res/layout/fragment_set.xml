@@ -6,7 +6,7 @@
     android:background="#F6F8FA"
     android:orientation="vertical">
 
-    <cn.cqs.android.views.titlebar.TitleBar
+    <cn.cqs.components.titlebar.TitleBar
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

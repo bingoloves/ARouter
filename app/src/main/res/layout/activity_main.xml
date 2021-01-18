@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <cn.cqs.android.views.titlebar.TitleBar
+    <cn.cqs.components.titlebar.TitleBar
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,4 +37,11 @@
         android:textAllCaps="false"
         android:onClick="toTitleBar"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="打开相册"
+        android:textAllCaps="false"
+        android:onClick="openPhoto"
+        style="@style/StyleButton"/>
 </LinearLayout>
