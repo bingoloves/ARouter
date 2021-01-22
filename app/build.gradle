@@ -44,6 +44,7 @@ dependencies {
     annotationProcessor deps.arouterCompiler
     annotationProcessor deps.butterknifeCompiler
     implementation project(':base')
+    implementation project(':logcat')
     if(!isLoginRunAlone.toBoolean()){
         implementation project(':login')
     }

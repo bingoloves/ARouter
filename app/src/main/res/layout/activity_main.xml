@@ -12,36 +12,13 @@
         app:barStyle="light"
         app:backButton="false"
         app:title="首页" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="登录"
-        android:textAllCaps="false"
-        android:onClick="toLogin"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Im"
-        android:textAllCaps="false"
-        android:onClick="toIm"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fragment"
-        android:textAllCaps="false"
-        android:onClick="toFragment"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TitleBar"
-        android:textAllCaps="false"
-        android:onClick="toTitleBar"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="打开相册"
-        android:textAllCaps="false"
-        android:onClick="openPhoto"
-        style="@style/StyleButton"/>
+    <cn.cqs.components.views.OverScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fadingEdge="none"/>
+    </cn.cqs.components.views.OverScrollView>
 </LinearLayout>

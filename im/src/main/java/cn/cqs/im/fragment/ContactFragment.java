@@ -67,7 +67,7 @@ public class ContactFragment extends BaseFragment{
     protected void initView() {
         ImmersionBar.with(this).statusBarDarkFont(true).titleBar(R.id.title_bar).init();
         mTitleBar.setTitle("联系人");
-        mTitleBar.setRightIcon(R.drawable.base_action_bar_add_bg_selector);
+        mTitleBar.setRightTitle("搜索");
         mTitleBar.setOnTitleBarListener(new OnClickTitleBarImpl(){
             @Override
             public void onRightClick(View v) {

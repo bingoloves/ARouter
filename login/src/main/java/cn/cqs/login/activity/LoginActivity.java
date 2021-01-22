@@ -10,6 +10,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.gyf.immersionbar.ImmersionBar;
@@ -21,9 +22,11 @@ import cn.cqs.android.utils.ACache;
 import cn.cqs.android.utils.log.LogUtils;
 import cn.cqs.login.R;
 import cn.cqs.login.R2;
+import cn.cqs.login.services.LoginServiceImpl;
 import cn.cqs.service.ServiceFactory;
 import cn.cqs.service.constants.Cache;
 import cn.cqs.service.constants.IRoutePath;
+import cn.cqs.service.im.BmobService;
 import cn.cqs.service.im.LoginCallback;
 
 /**
@@ -51,15 +54,25 @@ public class LoginActivity extends BaseActivity{
             eyesIv.setImageResource(showPwd ? R.mipmap.login_icon_show : R.mipmap.login_icon_hide);
         }
     }
+
     /**
      * 是否显示密码
      */
     private boolean showPwd = false;
+    /**
+     * 获取IM 提供的接口
+     * 方式1: @Autowired 自动注入的形式
+     * 方式2: 通过类名ARouter.getInstance().navigation(BmobService.class);
+     * 方式3: 通过路径名称ARouter.getInstance().build("path").navigation();
+     */
+    @Autowired
+    BmobService bmobService;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
     }
     @Override
     protected void initImmersionbar() {
@@ -73,7 +86,7 @@ public class LoginActivity extends BaseActivity{
             toast("请输入完整信息");
             return;
         }
-        ServiceFactory.getInstance().getBmobService().register(userName, password, new LoginCallback() {
+        bmobService.register(userName, password, new LoginCallback() {
             @Override
             public void onSuccess(String userInfo) {
                 toast("注册成功");
@@ -84,6 +97,17 @@ public class LoginActivity extends BaseActivity{
                 toast("注册失败："+ error);
             }
         });
+//        ServiceFactory.getInstance().getBmobService().register(userName, password, new LoginCallback() {
+//            @Override
+//            public void onSuccess(String userInfo) {
+//                toast("注册成功");
+//            }
+//
+//            @Override
+//            public void onError(String error) {
+//                toast("注册失败："+ error);
+//            }
+//        });
     }
 
     private void login(View view) {
@@ -93,13 +117,14 @@ public class LoginActivity extends BaseActivity{
             toast("请输入完整信息");
             return;
         }
-        ServiceFactory.getInstance().getBmobService().login(userName, password, new LoginCallback() {
+        bmobService.login(userName, password, new LoginCallback() {
             @Override
             public void onSuccess(String userInfo) {
+                LoginServiceImpl.userInfo = userInfo;
                 toast("登录成功");
                 ACache.get(LoginActivity.this).put(Cache.IS_LOGIN,true);
                 ARouter.getInstance().build(IRoutePath.WECHAT)
-                        .withString("name", "xuebing")
+                        .withString("user", userInfo)
                         .navigation(LoginActivity.this);
                 finish();
             }
@@ -107,9 +132,27 @@ public class LoginActivity extends BaseActivity{
             @Override
             public void onError(String error) {
                 LogUtils.e("error = "+error);
-                toast("登录失败："+ error);
+                toast("登录失败");
             }
         });
+        //普通接口方式，比较繁琐，需要手动对外暴露ServiceFactory.getInstance().setBmobService(xxx)
+//        ServiceFactory.getInstance().getBmobService().login(userName, password, new LoginCallback() {
+//            @Override
+//            public void onSuccess(String userInfo) {
+//                toast("登录成功");
+//                ACache.get(LoginActivity.this).put(Cache.IS_LOGIN,true);
+//                ARouter.getInstance().build(IRoutePath.WECHAT)
+//                        .withString("name", "xuebing")
+//                        .navigation(LoginActivity.this);
+//                finish();
+//            }
+//
+//            @Override
+//            public void onError(String error) {
+//                LogUtils.e("error = "+error);
+//                toast("登录失败："+ error);
+//            }
+//        });
     }
 
     /**

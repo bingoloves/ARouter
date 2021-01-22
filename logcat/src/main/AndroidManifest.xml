@@ -1,0 +1,32 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="cn.cqs.logviewer">
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <application>
+        <activity
+            android:name=".LogcatActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
+        <activity
+            android:name=".LogcatDetailActivity"
+            android:label="Log detail"
+            android:theme="@style/Theme.AppCompat">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LogcatActivity"/>
+        </activity>
+        <provider
+            android:name=".LogcatFileProvider"
+            android:authorities="${applicationId}.logcat_fileprovider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/logcat_filepaths" />
+        </provider>
+        <service android:name=".FloatingLogcatService"/>
+
+    </application>
+
+</manifest>

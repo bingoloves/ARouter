@@ -24,6 +24,9 @@ dependencies {
     def deps = rootProject.ext.dependencies
     implementation deps.appcompat
     implementation deps.constraint
+    //适配器框架
+    //api deps.BRVAH
+    api project (':brvah')
     //图片选择框架
     api deps.easyPhotos
     implementation deps.glide

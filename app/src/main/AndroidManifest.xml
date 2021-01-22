@@ -9,6 +9,7 @@
         android:name=".App"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".activity.SplashActivity"
             android:theme="@style/SplashAppTheme">
             <intent-filter>
@@ -20,6 +21,8 @@
         <activity android:name=".activity.MainActivity"/>
         <activity android:name=".activity.OtherModuleActivity"/>
         <activity android:name=".activity.TitleBarActivity"/>
+        <activity android:name=".activity.QuickAdapterActivity"/>
+        <activity android:name=".activity.GridPhotoActivity"/>
     </application>
 
 </manifest>

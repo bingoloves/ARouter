@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cn.cqs.logviewer.test" >
+
+    <uses-sdk
+        android:minSdkVersion="15"
+        android:targetSdkVersion="28" />
+
+    <instrumentation
+        android:name="android.test.InstrumentationTestRunner"
+        android:functionalTest="false"
+        android:handleProfiling="false"
+        android:label="Tests for cn.cqs.logviewer.test"
+        android:targetPackage="cn.cqs.logviewer.test" />
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <application
+        android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
+        android:debuggable="true" >
+        <uses-library android:name="android.test.runner" />
+
+        <activity
+            android:name="cn.cqs.logviewer.LogcatActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="cn.cqs.logviewer.LogcatDetailActivity"
+            android:label="Log detail"
+            android:theme="@style/Theme.AppCompat" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LogcatActivity" />
+        </activity>
+
+        <provider
+            android:name="cn.cqs.logviewer.LogcatFileProvider"
+            android:authorities="cn.cqs.logviewer.test.logcat_fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/logcat_filepaths" />
+        </provider>
+
+        <service android:name="cn.cqs.logviewer.FloatingLogcatService" />
+    </application>
+
+</manifest>

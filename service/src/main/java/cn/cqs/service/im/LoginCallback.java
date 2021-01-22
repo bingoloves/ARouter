@@ -12,7 +12,7 @@ package cn.cqs.service.im;
 
 public interface LoginCallback {
     /**
-     * 返回一个用户信息的json子串
+     * 返回一个用户信息的json数据
      * @param userInfo
      */
     void onSuccess(String userInfo);

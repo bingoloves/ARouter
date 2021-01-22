@@ -1,18 +1,18 @@
 package cn.cqs.app.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.view.Window;
-import android.view.WindowManager;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 
+import cn.cqs.logviewer.FloatingLogcatService;
+import cn.cqs.logviewer.LogcatActivity;
+
 import cn.cqs.android.base.BaseActivity;
 import cn.cqs.app.R;
-import cn.cqs.service.ServiceFactory;
+import cn.cqs.app.bean.User;
 import cn.cqs.service.constants.IRoutePath;
 
 /**
@@ -31,14 +31,18 @@ public class SplashActivity extends BaseActivity {
             public void run() {
 //                Intent intent = new Intent(activity,MainActivity.class);
 //                startActivity(intent);
-                boolean isLogin = ServiceFactory.getInstance().getLoginService().isLogin();
-                if (isLogin) {
-                    ARouter.getInstance().build(IRoutePath.WECHAT).navigation(activity);
-                }else{
-                    ARouter.getInstance().build(IRoutePath.LOGIN).navigation(activity);
-                }
+                ARouter.getInstance().build("/main/main")
+                        .withObject("user",new User("xuebing",20))
+                        .navigation(activity);
+//                boolean isLogin = ServiceFactory.getInstance().getLoginService().isLogin();
+//                if (isLogin) {
+//                    ARouter.getInstance().build(IRoutePath.WECHAT).navigation(activity);
+//                }else{
+//                    ARouter.getInstance().build(IRoutePath.LOGIN).navigation(activity);
+//                }
                 finish();
             }
         },1000);
+//        FloatingLogcatService.launch(this);
     }
 }

@@ -8,10 +8,13 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.gyf.immersionbar.ImmersionBar;
 import java.util.ArrayList;
 import java.util.List;
 import butterknife.BindView;
+import cn.bmob.newim.BmobIM;
 import cn.bmob.v3.BmobUser;
 import cn.cqs.adapter.recyclerview.CommonAdapter;
 import cn.cqs.adapter.recyclerview.base.ViewHolder;
@@ -23,6 +26,7 @@ import cn.cqs.im.activity.UserInfoActivity;
 import cn.cqs.im.bean.MineItem;
 import cn.cqs.im.bean.User;
 import cn.cqs.im.model.UserModel;
+import cn.cqs.service.constants.IRoutePath;
 
 /**
  * 设置
@@ -89,10 +93,10 @@ public class SetFragment extends BaseFragment {
         list.add(new MineItem(R.mipmap.ic_mine_logout, "退出登录", "", false, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //  UserModel.getInstance().logout();
+                UserModel.getInstance().logout();
                 // TODO 连接：3.2、退出登录需要断开与IM服务器的连接
-                // BmobIM.getInstance().disConnect();
-                // getActivity().finish();
+                BmobIM.getInstance().disConnect();
+                ARouter.getInstance().build(IRoutePath.LOGIN).navigation(getContext());
             }
         }));
     }

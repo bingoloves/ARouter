@@ -48,8 +48,10 @@ import cn.cqs.im.event.RefreshEvent;
 import cn.cqs.im.fragment.ContactFragment;
 import cn.cqs.im.fragment.ConversationFragment;
 import cn.cqs.im.fragment.SetFragment;
+import cn.cqs.im.model.UserModel;
 import cn.cqs.service.ServiceFactory;
 import cn.cqs.service.constants.IRoutePath;
+import cn.cqs.service.login.LoginService;
 
 /**
  * @author :smile
@@ -65,7 +67,9 @@ public class WeChatActivity extends BaseActivity {
     CommonTabLayout bottomTab;
 
     @Autowired
-    String name;
+    String user;
+    @Autowired
+    LoginService loginService;
 
     private String[] mTitles = {"会话", "联系人", "设置"};
     private int[] mIconUnselectIds = {R.drawable.ic_message, R.drawable.ic_contact, R.drawable.ic_setting};
@@ -78,20 +82,25 @@ public class WeChatActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wechat);
         EventBus.getDefault().register(this);
+        LogUtils.e("user = " + user);
         //校验登录状态
-        boolean isLogin = ServiceFactory.getInstance().getLoginService().isLogin();
-        LogUtils.e(isLogin?"已登录":"未登录");
-        if (!isLogin){
+        if (!loginService.isLogin() || UserModel.getInstance().getCurrentUser() == null){
             Toast.makeText(this, "请先登录！", Toast.LENGTH_SHORT).show();
             return;
         }
+//        boolean isLogin = ServiceFactory.getInstance().getLoginService().isLogin();
+//        LogUtils.e(isLogin?"已登录":"未登录");
+//        if (!isLogin){
+//            Toast.makeText(this, "请先登录！", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
         initView();
         final User user = BmobUser.getCurrentUser(User.class);
         //TODO 连接：3.1、登录成功、注册成功或处于登录状态重新打开应用后执行连接IM服务器的操作
         //判断用户是否登录，并且连接状态不是已连接，则进行连接操作
         if (!TextUtils.isEmpty(user.getObjectId()) &&
                 BmobIM.getInstance().getCurrentStatus().getCode() != ConnectionStatus.CONNECTED.getCode()) {
-            BmobIM.connect(user.getObjectId(), new ConnectListener() {
+                BmobIM.connect(user.getObjectId(), new ConnectListener() {
                 @Override
                 public void done(String uid, BmobException e) {
                     if (e == null) {

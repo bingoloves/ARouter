@@ -60,6 +60,7 @@ ext {
             debugDatabase            : "com.amitshekhar.android:debug-db:1.0.4",                    //数据库可视化
             easyPhotos               : "com.github.HuanTanSheng:EasyPhotos:2.4.5",                  //图片选择框架
             photoPreview             : "com.ycjiang:ImagePreview:2.3.5",                            //图片预览框架框架
+            BRVAH                    : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.42",   //Android适配器框架
             //Rx系列
             rxjava                   : "io.reactivex.rxjava2:rxjava:2.2.3",
             rxandroid                : "io.reactivex.rxjava2:rxandroid:2.1.0",

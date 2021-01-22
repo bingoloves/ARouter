@@ -1,11 +1,10 @@
 package cn.cqs.login;
 
 import android.app.Application;
-import android.content.Context;
 
 import cn.cqs.android.base.AbsApplication;
 import cn.cqs.android.utils.log.LogUtils;
-import cn.cqs.login.services.LoginService;
+import cn.cqs.login.services.LoginServiceImpl;
 import cn.cqs.service.ServiceFactory;
 
 /**
@@ -27,6 +26,6 @@ public class LoginApp extends AbsApplication {
         LogUtils.d("LoginApp");
         loginApp = application;
         //将内部需要交互的模块开放出去
-        ServiceFactory.getInstance().setLoginService(new LoginService());
+        ServiceFactory.getInstance().setLoginService(new LoginServiceImpl());
     }
 }

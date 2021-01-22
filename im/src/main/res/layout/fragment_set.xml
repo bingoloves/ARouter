@@ -5,18 +5,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#F6F8FA"
     android:orientation="vertical">
-
-    <cn.cqs.components.titlebar.TitleBar
-        android:id="@+id/title_bar"
+    <cn.cqs.components.views.OverScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:backButton="false"
-        app:title="设置" />
-    <include layout="@layout/layout_mine_header"/>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="none"
-        android:overScrollMode="never"/>
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F6F8FA"
+            android:orientation="vertical">
+            <cn.cqs.components.titlebar.TitleBar
+                android:id="@+id/title_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:backButton="false"
+                app:title="设置" />
+            <include layout="@layout/layout_mine_header"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:overScrollMode="never"/>
+        </LinearLayout>
+    </cn.cqs.components.views.OverScrollView>
 </LinearLayout>

@@ -121,7 +121,7 @@ public class ApplicationUtils {
         mGlobalApplication = application;
         String currentApplicationName = application.getClass().getCanonicalName();
         for (String moduleApp : Config.moduleApps) {
-            LogUtils.e("module:"+moduleApp);
+//            LogUtils.e("module:"+moduleApp);
             //双重判断避免重复调用
             if (!TextUtils.isEmpty(currentApplicationName) && !moduleAfterList.contains(moduleApp)){
                 moduleAfterList.add(moduleApp);
