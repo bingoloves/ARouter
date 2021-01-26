@@ -45,7 +45,6 @@ dependencies {
     annotationProcessor deps.arouterCompiler
     annotationProcessor deps.butterknifeCompiler
     implementation project(':base')
-//    implementation 'cn.cqs.android:base:1.0.2'
     implementation project(':logcat')
     if (!isLoginRunAlone.toBoolean()) {
         implementation project(':login')

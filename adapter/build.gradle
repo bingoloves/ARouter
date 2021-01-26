@@ -1,22 +1,4 @@
 apply plugin: 'com.android.library'
-// 添加 maven 插件
-//apply plugin: 'maven'
-//uploadArchives {
-//    repositories {
-//        mavenDeployer {
-//            pom.project {
-//                // 自定义的项目分组
-//                groupId 'cn.cqs.android'
-//                // 自定义项目名称
-//                artifactId 'adapter'
-//                // 项目版本号
-//                version '1.0.0'
-//            }
-//            // 自定义本地仓库路径，此处是项目根目录下的 repo 目录中
-//            repository(url: uri("../repo"))
-//        }
-//    }
-//}
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
