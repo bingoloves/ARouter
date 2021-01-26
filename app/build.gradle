@@ -30,12 +30,13 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     def deps = rootProject.ext.dependencies
-    debugImplementation deps.debugDatabase//数据库可视化
+    debugImplementation deps.debugDatabase
+    //数据库可视化
     implementation deps.appcompat
     implementation deps.design
     implementation deps.glide
@@ -44,11 +45,12 @@ dependencies {
     annotationProcessor deps.arouterCompiler
     annotationProcessor deps.butterknifeCompiler
     implementation project(':base')
+//    implementation 'cn.cqs.android:base:1.0.2'
     implementation project(':logcat')
-    if(!isLoginRunAlone.toBoolean()){
+    if (!isLoginRunAlone.toBoolean()) {
         implementation project(':login')
     }
-    if(!isImRunAlone.toBoolean()){
+    if (!isImRunAlone.toBoolean()) {
         implementation project(':im')
     }
 }

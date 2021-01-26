@@ -1,6 +1,21 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.jakewharton.butterknife'
-
+apply plugin: 'maven'
+uploadArchives{
+    repositories.mavenDeployer{
+        //本地仓库路径
+        repository(url: uri('../repo'))
+        // 唯一标识
+        pom.groupId = "cn.cqs.android"
+        // 项目名称
+        pom.artifactId = "base"
+        // 版本号
+        pom.version = "1.0.2"
+    }
+}
+/**
+ * 底层 工具层
+ */
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {

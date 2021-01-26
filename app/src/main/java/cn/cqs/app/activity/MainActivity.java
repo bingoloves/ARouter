@@ -60,6 +60,8 @@ public class MainActivity extends BaseActivity {
                     startActivity(intent);
                 } else if (!TextUtils.isEmpty(simpleItem.routePath)){
                     ARouter.getInstance().build(simpleItem.routePath).navigation(activity);
+                } else if (simpleItem.onClickListener != null){
+                    simpleItem.onClickListener.onClick(view);
                 }
             }
         });
@@ -70,9 +72,8 @@ public class MainActivity extends BaseActivity {
 //                .withFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 //                .greenChannel()//跳转时跳过所有的拦截器
 //                .navigation(this, new DefaultNavCallback());
-    /**
-     *
-     */
+    public static final String ACTION_REBOOT =  "android.intent.action.REBOOT";
+    public static final String ACTION_REQUEST_SHUTDOWN = "android.intent.action.ACTION_REQUEST_SHUTDOWN";
     private void initData() {
         //setTransitionAnimation(TransitionEnum.RIGHT);
         list.add(new SimpleItem("登录", "模块化登录", IRoutePath.LOGIN));
@@ -81,6 +82,26 @@ public class MainActivity extends BaseActivity {
         list.add(new SimpleItem("TitleBar", "自定义TitleBar","/main/titlebar"));
         list.add(new SimpleItem("BRVAH", "基于BRVAH适配器的简单使用",QuickAdapterActivity.class));
         list.add(new SimpleItem("九宫格图片", "图片选择",GridPhotoActivity.class));
+//        list.add(new SimpleItem("关机", "关机意图", new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(Intent.ACTION_SHUTDOWN);
+////                intent.putExtra(Intent.EXTRA_KEY_CONFIRM, false);
+//                //其中false换成true,会弹出是否关机的确认窗口
+//                sendBroadcast(intent);
+//            }
+//        }));
+//        list.add(new SimpleItem("重启", "重启广播", new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //需要系统App权限才行
+//                Intent intent2 = new Intent(Intent.ACTION_REBOOT);
+//                intent2.putExtra("nowait", 1);
+//                intent2.putExtra("interval", 1);
+//                intent2.putExtra("window", 0);
+//                sendBroadcast(intent2);
+//            }
+//        }));
     }
 
 

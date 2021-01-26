@@ -17,7 +17,7 @@ public class SimpleItem {
     public String desc;//说明或者描述
     public Class clazz;//跳转页面对象
     public String routePath;//用于ARouter页面跳转
-
+    public View.OnClickListener onClickListener;//简单效果
     /**
      * 普通跳转
      * @param name
@@ -40,5 +40,17 @@ public class SimpleItem {
         this.name = name;
         this.desc = desc;
         this.routePath = routePath;
+    }
+
+    /**
+     * 简单效果
+     * @param name
+     * @param desc
+     * @param onClickListener
+     */
+    public SimpleItem(String name, String desc, View.OnClickListener onClickListener) {
+        this.name = name;
+        this.desc = desc;
+        this.onClickListener = onClickListener;
     }
 }

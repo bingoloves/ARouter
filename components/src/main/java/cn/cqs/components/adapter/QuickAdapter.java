@@ -38,7 +38,7 @@ public class QuickAdapter<T> extends BaseQuickAdapter<T, BaseViewHolder> {
      * @return
      */
     public int getCurrentPosition(@NonNull BaseViewHolder helper){
-        return helper.getCurrentPosition(getHeaderLayoutCount());
+        return helper.getLayoutPosition() - getHeaderLayoutCount();
     }
     public void attachRecyclerView(RecyclerView recyclerView){
         if (recyclerView == null) throw new IllegalArgumentException("recyclerView == null");
